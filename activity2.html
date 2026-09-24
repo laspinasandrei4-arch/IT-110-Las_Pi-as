@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Practical Application Activity</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        line-height: 1.5;
+      }
+      h1,
+      h2 {
+        color: #222;
+      }
+      section {
+        margin-bottom: 2.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #ddd;
+      }
+      figure {
+        margin: 1rem 0;
+      }
+      figcaption {
+        font-size: 0.9rem;
+        color: #555;
+      }
+      img {
+        border: 1px solid #ccc;
+      }
+      nav a {
+        margin-right: 1rem;
+      }
+      code,
+      pre {
+        background: #f4f4f4;
+        padding: 0.2rem 0.4rem;
+        border-radius: 3px;
+      }
+      blockquote {
+        border-left: 4px solid #ccc;
+        margin: 1rem 0;
+        padding-left: 1rem;
+        color: #444;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="top">HTML Practical Application Activity</h1>
+
+    <!-- Simple internal navigation so the anchor / internal links have somewhere to go -->
+    <nav>
+      <a href="#images">Images</a>
+      <a href="#hyperlinks">Hyperlinks</a>
+      <a href="#multimedia">Multimedia</a>
+      <a href="#useful-tags">Useful Tags</a>
+      <a href="#dom">HTML DOM</a>
+    </nav>
+
+    <!-- ===================== 1. IMAGES ===================== -->
+    <section id="images">
+      <h2>Images</h2>
+
+      <!-- Images that are found in my Website -->
+      <img
+        src="images/mountain.jpg"
+        alt="A scenic mountain landscape at sunrise"
+        width="200"
+      />
+
+      <img
+        src="images/laptop.jpg"
+        alt="Close-up of a laptop keyboard while coding"
+        width="300"
+        height="200"
+      />
+
+      <figure>
+        <img
+          src="images/cup of coffee.jpg"
+          alt="A cup of coffee sitting on a wooden desk next to a notebook"
+          width="200"
+        />
+
+        <!-- Used <figure> and <figcaption> to provide a caption for the image -->
+
+        <figcaption>Things I appreciate before coding session.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ===================== 2. HYPERLINKS ===================== -->
+    <section id="hyperlinks">
+      <h2>Hyperlinks</h2>
+
+      <!-- Internal link: it points to another section on this same page -->
+      <p><a href="#dom">Internal link: Jump to the HTML DOM section</a></p>
+
+      <!-- External link: opens in a new tab -->
+      <p>
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+          target="_blank"
+          rel="noopener"
+          >External link: MDN HTML Documentation (opens in a new tab)</a
+        >
+      </p>
+
+      <!-- My Email Link -->
+      <p>
+        <a href="mailto:laspinasandrei4@gmail.com">Email link: Contact me</a>
+      </p>
+
+      <!-- Same-page anchor link, targeting the id="useful-tags" section below -->
+      <p><a href="#useful-tags">Anchor link: Jump down to Useful Tags</a></p>
+    </section>
+
+    <!-- ===================== 3. MULTIMEDIA ===================== -->
+    <section id="multimedia">
+      <h2>Multimedia</h2>
+
+      <!-- Audio I downloaded and stored it in media file -->
+      <audio controls>
+        <source src="   media/audio.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element. You can
+        <a href="media/audio.mp3">download the audio file</a> instead.
+      </audio>
+
+      <br /><br />
+
+      <!-- Video I downloaded and stored it in media file -->
+      <video controls width="400">
+        <source src="media/video.mp4" type="video/mp4" />
+        Your browser does not support the video element. You can
+        <a href="media/video.mp4">download the video file</a> instead.
+      </video>
+    </section>
+
+    <!-- ===================== 4. USEFUL TAGS ===================== -->
+    <section id="useful-tags">
+      <h2>Useful Tags</h2>
+
+      <!-- Used <blockquote> to set off a quoted statement from a separate source -->
+      <blockquote>
+        "The best way to learn HTML is to build something real with it."
+      </blockquote>
+
+      <!-- Used <abbr> to give the full meaning of an abbreviation on hover -->
+      <p>
+        <abbr title="HyperText Markup Language">HTML</abbr> is the standard
+        language for creating web pages.
+      </p>
+
+      <!-- Used <mark> to visually highlight an important word in the sentence -->
+      <p>
+        Remember to always add an <mark>alt attribute</mark> to every image you
+        use.
+      </p>
+
+      <!-- Used <code> and <pre> to display a formatted code snippet -->
+      <pre><code>&lt;p&gt;Hello, world!&lt;/p&gt;</code></pre>
+
+      <!-- Used an HTML character entity to display the copyright symbol -->
+      <p>&copy; 2026 My Practical Activity Project</p>
+    </section>
+
+    <!-- ===================== 5. HTML DOM ===================== -->
+    <section id="dom">
+      <h2>HTML DOM</h2>
+      <p>
+        This section demonstrates elements with id attributes for DOM inspection
+        (see the ids on the heading and section elements throughout this page).
+      </p>
+    </section>
+
+    <!--
+  Parent-child relationship notes (DOM):
+  When I inspected the page, I found that <figure> is the parent of
+  both the <img> and the <figcaption> inside my Images section — if I
+  deleted the figure, both of those children would go with it. I also
+  noticed that <section id="images"> is a parent too, but a bigger one:
+  it holds three <img> elements plus the whole <figure>, so it's really
+  the ancestor of everything in that part of the page. Over in Useful
+  Tags, I saw that <pre> is the parent of <code>, which makes sense
+  since <code> needs to sit inside <pre> to keep its formatting intact.
+  And zooming out, <body> ends up being the top level parent of every
+  single <section> on my page, including images, hyperlinks,
+  multimedia, useful tags, and dom.
+-->
+  </body>
+</html>
