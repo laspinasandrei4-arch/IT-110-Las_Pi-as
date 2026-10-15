@@ -1,0 +1,243 @@
+/* ==========================================================
+   styles.css - CSS Hands-On Activity: Style Your Profile Card
+   ========================================================== */
+
+/* ==========================================================
+   SECTION 1: RESET AND BASE STYLES
+   ========================================================== */
+
+/* Universal selector: simple reset + border-box sizing.
+   border-box makes width include padding and border. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Type selector: styles the whole page */
+body {
+  font-family: Arial, Helvetica, sans-serif; /* font-family */
+  font-size: 1rem; /* rem unit */
+  background-color: #f4f4f9; /* hex color */
+  color: rgb(40, 40, 40); /* rgb color */
+  line-height: 1.5;
+}
+
+/* Grouping selector: h1 and h2 share the same font settings */
+h1,
+h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: bold; /* font-weight */
+}
+
+h1 {
+  font-size: 2.5rem; /* rem unit */
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #1a3c6e;
+  margin-bottom: 0.5em; /* em unit */
+}
+
+/* Pseudo-element: ::before adds a decorative symbol before every h2 */
+h2::before {
+  content: "\2605  "; /* a star symbol */
+  color: gold; /* color by name */
+}
+
+/* ==========================================================
+   SECTION 2: CASCADE DEMONSTRATION
+   ========================================================== */
+
+/* Two rules that target the same element (the p.intro paragraph).
+   The .intro rule appears FIRST and the p rule appears LAST.
+   WINNER: .intro (darkblue text). Reason: SPECIFICITY beats order.
+   A class selector (0,1,0) is more specific than a type selector
+   (0,0,1), so the class rule wins even though the p rule comes later.
+   Other paragraphs (without .intro) stay gray because only the
+   p rule applies to them. */
+.intro {
+  color: darkblue; /* color by name */
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+p {
+  color: gray;
+}
+
+/* Pseudo-element: ::first-letter styles only the first letter of .intro
+   (the activity sheet writes ::firstletter, but the real name has a hyphen) */
+.intro::first-letter {
+  font-size: 1.6rem;
+  color: crimson;
+}
+
+/* ==========================================================
+   SECTION 3: LAYOUT - HEADER, FOOTER
+   ========================================================== */
+
+header,
+footer {
+  text-align: center; /* centers the text */
+  background-color: #1a3c6e;
+  color: white;
+  padding: 20px;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+footer {
+  margin-top: 30px;
+}
+
+/* The footer paragraph would be gray from the p rule, so use a
+   descendant selector (footer p) to make it white. footer p (0,0,2)
+   is more specific than p (0,0,1), so it wins. */
+footer p {
+  color: white;
+}
+
+/* ==========================================================
+   SECTION 4: COMPONENTS - CARD (BOX MODEL)
+   ========================================================== */
+
+/* TOTAL RENDERED WIDTH of one .card = 500px.
+   Calculation: because of box-sizing: border-box, the width of 500px
+   already INCLUDES the padding (20px left + 20px right) and the border
+   (3px left + 3px right). The content area is 500 - 40 - 6 = 454px,
+   but the card itself is exactly 500px wide. */
+.card {
+  width: 500px; /* fixed width, px unit */
+  padding: 20px; /* space inside the border */
+  border: 3px solid #1a3c6e; /* width, style, color in one line */
+  border-radius: 12px; /* rounded corners */
+  background-color: rgba(255, 255, 255, 0.95); /* rgba color */
+  margin: 0 auto; /* centers the card horizontally */
+  margin-bottom: 20px; /* space between cards */
+  text-align: left;
+}
+
+/* Descendant selector: any p inside a .card */
+.card p {
+  margin-bottom: 0.5em;
+  line-height: 1.6;
+}
+
+/* ID selector: makes #about stand out with a different border color.
+   The ID selector (1,0,0) is more specific than .card (0,1,0),
+   so this border-color overrides the one in .card. */
+#about {
+  border-color: crimson;
+  position: relative; /* makes #about the reference box for its absolute child */
+}
+
+/* Badge in the top-right corner of #about.
+   position: absolute is placed relative to the nearest positioned
+   ancestor, which is #about (position: relative). */
+#about::after {
+  content: "NEW";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: crimson;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* ==========================================================
+   SECTION 5: NAVIGATION (DISPLAY AND PSEUDO-CLASS)
+   ========================================================== */
+
+/* inline-block lets links sit side by side AND accept
+   width, height, padding, and margin properly */
+nav a {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 5px;
+  background-color: #2f6fba;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+/* Pseudo-class: :hover applies while the mouse is over the link */
+nav a:hover {
+  background-color: gold;
+  color: black;
+}
+
+/* ==========================================================
+   SECTION 6: SKILLS LIST (FLEXBOX)
+   ========================================================== */
+
+.skills-list {
+  display: flex; /* turns the ul into a flex container (row by default) */
+  gap: 12px; /* space between the items */
+  justify-content: center; /* centers the items along the row */
+  list-style: none; /* removes the bullets */
+}
+
+/* Child selector: only li elements that are DIRECT children of .skills-list */
+.skills-list > li {
+  background-color: #dbe9f8;
+  color: #1a3c6e;
+  padding: 6px 14px;
+  border: 1px solid #2f6fba;
+  border-radius: 20px; /* pill / tag shape */
+  font-size: 0.9rem;
+}
+
+/* ==========================================================
+   SECTION 7: VISIBILITY AND OVERFLOW
+   ========================================================== */
+
+/* display: none removes the element completely (no space is kept) */
+.hide-none {
+  display: none;
+}
+
+/* visibility: hidden hides the element but it still takes up space */
+.hide-visibility {
+  visibility: hidden;
+}
+
+/* DIFFERENCE ON THE PAGE: the .hide-none paragraph is gone and the
+   paragraphs below it move up, leaving no gap. The .hide-visibility
+   paragraph is invisible, but a blank gap of the same size stays where
+   it was, so the "always visible" paragraph is pushed down. */
+
+/* Fixed height + overflow: auto = a scrollbar appears when the content
+   is taller than the box (border-box height includes padding and border) */
+.scroll-box {
+  height: 120px;
+  overflow: auto;
+}
+
+/* ==========================================================
+   REFLECTION ANSWERS
+   ==========================================================
+
+   1. The .intro rule won because of specificity. A class selector like 
+   .intro is stronger than a type selector like p, so the paragraph 
+   turned dark blue even though the p rule came later in the file. 
+   Order only matters when both rules have the same specificity, 
+   and then the one written last wins.
+
+   2. If it were content-box, the 500px would only be the content, 
+   and the padding and border get added on top. 
+   So it’s 500 + 20 + 20 (padding) + 3 + 3 (border) = 546px. 
+   With border-box it stays 500px, because the padding and border
+     are counted inside the width.
+
+   3. I’d use visibility: hidden when I don’t want the page layout to move, 
+   like an error message that shows up in the same spot, so the other things 
+   don’t jump around. I’d use display: none when the element doesn’t need 
+   to take up any space at all.
+   ========================================================== */
